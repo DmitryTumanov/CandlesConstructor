@@ -1,0 +1,11 @@
+﻿.colors-dropdown li{
+    text-align: center;
+}
+
+.colors-dropdown li button{
+    color: inherit;
+}
+
+.colors-dropdown li button i{
+    padding-right: 7px;
+}
