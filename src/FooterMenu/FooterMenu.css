@@ -1,0 +1,54 @@
+﻿.footer {
+    position: fixed;
+    width: 100%;
+    height: 15%;
+    bottom: 0;
+    background: linear-gradient(rgba(178, 180, 179, 0.2), #FDA7C6) !important;
+}
+
+.footer .row {
+    margin: 0;
+}
+
+.footer .btn {
+    width: 90%;
+    padding: 10px 5%;
+}
+
+.footer .btn i {
+    font-size: 18px;
+    color: #C54684;
+}
+
+.footer .btn:disabled i {
+    color: #FDA7C6;
+}
+
+.btn-light {
+    --mdb-btn-bg: #ffffff;
+    --mdb-btn-hover-bg: #ffffff;
+    --mdb-btn-focus-bg: #ffffff;
+    --mdb-btn-active-bg: #ffffff;
+}
+
+.footer-copyright {
+    position: fixed;
+    font-size: 14px;
+    color: #ffffff;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-copyright a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.col-4, .col-3, .col-2 {
+    text-align: center;
+    padding: 0;
+}
+
+.container {
+    padding: 15px 0 10px;
+}

@@ -1,0 +1,51 @@
+.modal-title{
+    width: 100%;
+    text-align: center;
+}
+
+.modal-footer{
+    justify-content: center;
+}
+
+.modal-content{
+    background: linear-gradient(#ffffff, #FDA7C6) !important;
+    color: #C54684;
+}
+
+.btn {
+    color: #C54684;
+}
+
+.success {
+    background-color: #C54684;
+    color: #FFFFFF;
+}
+
+.btn.toggle {
+    padding: 10px;
+    margin: 0;
+    background: inherit;
+    text-align: center;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 16px;
+    color: #C54684;
+}
+
+.btn.toggle i {
+    padding: 0;
+}
+
+.btn i {
+    padding-left: 5px;
+}
+
+.btn-primary {
+    --mdb-btn-bg: #FFFFFF;
+    --mdb-btn-box-shadow: none;
+    --mdb-btn-hover-bg: #FFFFFF;
+    --mdb-btn-focus-bg: #FFFFFF;
+    --mdb-btn-active-bg: #FFFFFF;
+    --mdb-btn-box-shadow-state: none;
+}
