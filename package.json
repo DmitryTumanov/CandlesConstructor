@@ -2,7 +2,7 @@
   "name": "candle-constructor",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DmitryTumanov.github.io/KropliZor",
+  "homepage": "https://dmitrytumanov.github.io/CandlesConstructor/",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "@react-three/drei": "^9.103.0",
