@@ -6,7 +6,6 @@ import OrderCart from './OrderCart/OrderCart';
 import FooterMenu from './FooterMenu/FooterMenu';
 import {useState} from 'react';
 import {candleItemsMap} from './Config/constants';
-import OrderButton from './OrderCart/OrderButton';
 import {useLoader} from '@react-three/fiber';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 
