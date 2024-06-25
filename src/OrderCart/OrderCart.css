@@ -1,24 +1,45 @@
-.modal-title{
+.modal-title {
     width: 100%;
     text-align: center;
 }
 
-.modal-footer{
+.modal-footer {
     justify-content: center;
 }
 
-.modal-content{
-    background: linear-gradient(#ffffff, #FDA7C6) !important;
+.modal-content {
     color: #C54684;
 }
 
-.btn {
+.form-check-label {
+    color: #4f4f4f;
+}
+
+.form-check-input[type=checkbox]:checked, .form-check-input[type=checkbox]:checked:focus {
+    background-image: none;
+    background-color: #C54684;
+}
+
+.form-switch .form-check-input:checked[type=checkbox]:after{
+    background-color: #C54684;
+}
+
+.form-switch .form-check-input:checked:focus:before {
+    box-shadow: 3px -1px 0px 13px #C54684;
+}
+
+.btn, .btn:hover {
     color: #C54684;
 }
 
-.success {
+.success, .success:hover {
     background-color: #C54684;
     color: #FFFFFF;
+}
+
+.modal-dialog-scrollable .modal-content {
+    max-height: 70%;
+    overflow: hidden;
 }
 
 .btn.toggle {
