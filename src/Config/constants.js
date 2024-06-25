@@ -1,23 +1,21 @@
-﻿import {MDBDropdownItem} from "mdb-react-ui-kit";
-
-export const candleItemsMap = {
-    0: 'simple_candle/candle.glb',
-    1: 'simple_candle/arc.glb',
-    2: 'simple_candle/big_cilynder.glb',
-    3: 'simple_candle/cilynder.glb',
-    4: 'simple_candle/flower.glb',
-    5: 'simple_candle/gear.glb',
-    6: 'simple_candle/hemisphere.glb',
-    7: 'simple_candle/ribbed_cylinder.glb',
-    8: 'simple_candle/ribbed_frustum.glb',
-    9: 'simple_candle/ribbed_hemisphere.glb',
-    10: 'simple_candle/ribbed_sphere.glb',
-    11: 'simple_candle/ribbed_square.glb',
-    12: 'simple_candle/ring.glb',
-    13: 'simple_candle/small_cilynder.glb',
-    14: 'simple_candle/sphere.glb',
-    15: 'simple_candle/ufo.glb',
-    16: 'simple_candle/volumetric_flower.glb',
+﻿export const candleItemsMap = {
+    0: {url: 'simple_candle/candle.glb', name: 'Candle'},
+    1: {url: 'simple_candle/arc.glb', name: 'Arc'},
+    2: {url: 'simple_candle/big_cilynder.glb', name: 'Big Cylinder'},
+    3: {url: 'simple_candle/cilynder.glb', name: 'Cylinder'},
+    4: {url: 'simple_candle/flower.glb', name: 'Flower'},
+    5: {url: 'simple_candle/gear.glb', name: 'Gear'},
+    6: {url: 'simple_candle/hemisphere.glb', name: 'Hemisphere'},
+    7: {url: 'simple_candle/ribbed_cylinder.glb', name: 'Ribbed Cylinder'},
+    8: {url: 'simple_candle/ribbed_frustum.glb', name: 'Ribbed Frustum'},
+    9: {url: 'simple_candle/ribbed_hemisphere.glb', name: 'Ribbed Hemisphere'},
+    10: {url: 'simple_candle/ribbed_sphere.glb', name: 'Ribbed Sphere'},
+    11: {url: 'simple_candle/ribbed_square.glb', name: 'Ribbed Square'},
+    12: {url: 'simple_candle/ring.glb', name: 'Ring'},
+    13: {url: 'simple_candle/small_cilynder.glb', name: 'Small Cilynder'},
+    14: {url: 'simple_candle/sphere.glb', name: 'Sphere'},
+    15: {url: 'simple_candle/ufo.glb', name: 'Ufo'},
+    16: {url: 'simple_candle/volumetric_flower.glb', name: 'Volumetric Flower'},
 };
 export const colorsConfig = {
     'RED': {
@@ -94,5 +92,6 @@ export const colorsConfig = {
     }
 }
 export const defaultCandleColor = '#d9d9d9';
-export const defaultCandleItemColor = colorsConfig["WHITE CREAM"].color;
+export const defaultCandleItemColorName = "WHITE CREAM";
+export const defaultCandleItemColor = colorsConfig[defaultCandleItemColorName].color;
 export const candleSelectionColor = '#363636';

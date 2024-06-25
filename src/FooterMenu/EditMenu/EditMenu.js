@@ -1,5 +1,4 @@
 ﻿import {
-    MDBContainer,
     MDBRow,
     MDBCol,
     MDBDropdown,
@@ -7,9 +6,9 @@
     MDBDropdownToggle,
     MDBDropdownItem, MDBIcon, MDBBtn
 } from 'mdb-react-ui-kit';
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useMemo} from "react";
 import './EditMenu.css';
-import {colorsConfig, defaultCandleColor, defaultCandleItemColor} from "../../Config/constants";
+import {candleItemsMap, colorsConfig, defaultCandleItemColor, defaultCandleItemColorName} from "../../Config/constants";
 
 function EditMenu({candle, rerenderCandles}) {
     //todo: use useMemo
@@ -33,7 +32,8 @@ function EditMenu({candle, rerenderCandles}) {
             type: itemType,
             isSelected: true,
             isRotated: false,
-            color: defaultCandleItemColor
+            color: defaultCandleItemColor,
+            colorName: defaultCandleItemColorName
         });
         rerenderCandles();
     }, [resetItemSelection, candle, rerenderCandles]);
@@ -51,10 +51,11 @@ function EditMenu({candle, rerenderCandles}) {
         }
     }, [getSelectedCandleItem, rerenderCandles]);
 
-    const changeItemColor = useCallback((color) => () => {
+    const changeItemColor = useCallback((color, colorName) => () => {
         const selectedCandleItem = getSelectedCandleItem();
         if (selectedCandleItem) {
             selectedCandleItem.color = color;
+            selectedCandleItem.colorName = colorName;
             rerenderCandles();
         }
     }, [getSelectedCandleItem, rerenderCandles]);
@@ -67,12 +68,20 @@ function EditMenu({candle, rerenderCandles}) {
                 link
                 childTag='button'
                 style={{...colorsConfig[x]}}
-                onClick={changeItemColor(color)}
+                onClick={changeItemColor(color, x)}
             >
                 {color === getSelectedCandleItem()?.color ? (<MDBIcon fas icon='check' size='md'/>) : null}{x}
             </MDBDropdownItem>
         );
     }), [changeItemColor, getSelectedCandleItem]);
+
+    const candleItems = useMemo(() => Object.keys(candleItemsMap).slice(1).map((x) => {
+        return (
+            <MDBDropdownItem link childTag='button' onClick={addCandleItem(x)}>
+                {candleItemsMap[x].name}
+            </MDBDropdownItem>
+        );
+    }), [addCandleItem]);
 
     return (
         <MDBRow>
@@ -82,30 +91,7 @@ function EditMenu({candle, rerenderCandles}) {
                         <MDBIcon fab icon='plus' size='lg'/>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(1)}>Arc</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(2)}>Big
-                            Cylinder</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(3)}>Cylinder</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(4)}>Flower</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(5)}>Gear</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(6)}>Hemisphere</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(7)}>Ribbed
-                            Cylinder</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(8)}>Ribbed
-                            Frustum</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(9)}>Ribbed
-                            Hemisphere</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(10)}>Ribbed
-                            Sphere</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(11)}>Ribbed
-                            Square</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(12)}>Ring</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(13)}>Small
-                            Cilynder</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(14)}>Sphere</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(15)}>Ufo</MDBDropdownItem>
-                        <MDBDropdownItem link childTag='button' onClick={addCandleItem(16)}>Volumetric
-                            Flower</MDBDropdownItem>
+                        {candleItems}
                     </MDBDropdownMenu>
                 </MDBDropdown>
             </MDBCol>

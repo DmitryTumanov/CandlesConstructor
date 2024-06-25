@@ -9,7 +9,7 @@ import {Select} from "@react-three/postprocessing";
 
 const CandleItemModel = forwardRef(function (props, ref) {
     const {item, scale, candle, candles, updateCandles} = props;
-    const {nodes, materials} = useLoader(GLTFLoader, candleItemsMap[item.type]);
+    const {nodes, materials} = useLoader(GLTFLoader, candleItemsMap[item.type].url);
     const itemMesh = getItemMesh(nodes);
     const meshHeight = itemMesh.geometry.boundingBox.max.y - itemMesh.geometry.boundingBox.min.y;
     const rotation = [0, 0, item.isRotated ? Math.PI : 0];
