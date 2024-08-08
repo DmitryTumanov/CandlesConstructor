@@ -14,16 +14,17 @@ import {candleItemsMap, colorsConfig, defaultCandleItemColorName} from "../Confi
 function OrderCart({candles}) {
     const [open, setOpen] = useState(false);
     const [isGroupedItems, setIsGroupedItems] = useState(true);
-
+    
     const toggleOpen = () => setOpen(!open);
     
     const itemSortFn = (a, b) => {
-        return candleItemsMap[Number(a)].name > candleItemsMap[Number(b)].name ? 1 : -1;
+        return candleItemsMap[Number(a)].name >  candleItemsMap[Number(b)].name ? 1 : -1;
     };
 
     const getOrderItems = () => {
         return candles.map((x, i) => {
-            const subItems = x.items.sort((a, b) => itemSortFn(a.type, b.type)).map((y, j) => {
+            let copyedItems = [...x.items];
+            const subItems = copyedItems.sort((a, b) => itemSortFn(a.type, b.type)).map((y, j) => {
                 return (
                     <MDBListGroupItem className='d-flex justify-content-between align-items-start'>
                         <div className='ms-4 me-auto'>

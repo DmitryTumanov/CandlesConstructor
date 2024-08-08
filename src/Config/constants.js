@@ -91,6 +91,10 @@ export const colorsConfig = {
         backgroundColor: 'rgba(253, 167, 198, 0.2)'
     }
 }
+export const maxCandlesInRow = 4;
+export const maxCandles = 12;
+export const maxRows = Math.floor(maxCandles / maxCandlesInRow);
+export const centerPosition = [];
 export const defaultCandleColor = '#d9d9d9';
 export const defaultCandleItemColorName = "WHITE CREAM";
 export const defaultCandleItemColor = colorsConfig[defaultCandleItemColorName].color;

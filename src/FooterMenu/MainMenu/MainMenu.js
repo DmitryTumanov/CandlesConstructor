@@ -1,5 +1,6 @@
 ﻿import {useCallback} from "react";
 import {MDBBtn, MDBCol, MDBIcon, MDBRow} from "mdb-react-ui-kit";
+import { maxCandles } from "../../Config/constants";
 
 function MainMenu({candles, rerenderCandles}) {
     const selectedIndex = candles.findIndex((x) => x.isSelected);
@@ -9,11 +10,16 @@ function MainMenu({candles, rerenderCandles}) {
         candles.forEach((x) => x.isSelected = false);
     }, [candles]);
 
+    const checkCandleCount = useCallback(() => {
+        return candles.length < maxCandles;
+    }, [candles]);
+
     const addNewCandle = useCallback(() => {
         resetItemSelection();
+        if (!checkCandleCount()) return;
         candles.push({isSelected: true, isEditMode: false, items: []});
         rerenderCandles();
-    }, [candles, rerenderCandles, resetItemSelection]);
+    }, [candles, rerenderCandles, resetItemSelection, checkCandleCount]);
     
     const deleteCandle = useCallback(() => {
         candles.splice(selectedIndex, 1);
@@ -28,7 +34,7 @@ function MainMenu({candles, rerenderCandles}) {
     return (
         <MDBRow>
             <MDBCol md='4' sm='4' size='4'>
-                <MDBBtn className='btn-light btn-rounded' onClick={addNewCandle}>
+                <MDBBtn className='btn-light btn-rounded' disabled={!checkCandleCount()} onClick={addNewCandle}>
                     <MDBIcon fas icon="plus"/>
                 </MDBBtn>
             </MDBCol>
