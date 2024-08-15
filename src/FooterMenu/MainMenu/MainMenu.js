@@ -11,11 +11,16 @@ import {
   MDBRow,
 } from "mdb-react-ui-kit";
 import { maxCandles, assembledCandlesMap } from "../../Config/constants";
+import ColorSelector from "../MenuComponents/ColorSelector";
 
 function MainMenu({ candles, rerenderCandles }) {
   const [closeDropdowns, setCloseDropdowns] = useState(false);
   const selectedIndex = candles.findIndex((x) => x.isSelected);
   const isEditModeForSpecificItem = selectedIndex >= 0;
+
+  const getSelectedCandle = useCallback(() => {
+    return candles.find((x) => x.isSelected);
+  }, [candles]);
 
   const resetItemSelection = useCallback(() => {
     candles.forEach((x) => (x.isSelected = false));
@@ -25,12 +30,16 @@ function MainMenu({ candles, rerenderCandles }) {
     return candles.length < maxCandles;
   }, [candles]);
 
-  const addNewCandle = useCallback(() => {
-    resetItemSelection();
-    if (!checkCandleCount()) return;
-    candles.push({ isSelected: true, isEditMode: false, items: [] });
-    rerenderCandles();
-  }, [candles, rerenderCandles, resetItemSelection, checkCandleCount]);
+  const addNewCandle = useCallback(
+    (x) => {
+      resetItemSelection();
+      if (!checkCandleCount()) return;
+      const assembledCandle = { ...assembledCandlesMap[x] };
+      candles.push(assembledCandle);
+      rerenderCandles();
+    },
+    [candles, rerenderCandles, resetItemSelection, checkCandleCount]
+  );
 
   const deleteCandle = useCallback(() => {
     candles.splice(selectedIndex, 1);
@@ -42,52 +51,61 @@ function MainMenu({ candles, rerenderCandles }) {
     rerenderCandles();
   }, [candles, rerenderCandles, selectedIndex]);
 
-  const addAssembledCandle = useCallback(
-    (x) => {
-      resetItemSelection();
-      if (!checkCandleCount()) return;
-      const items = assembledCandlesMap[x].items;
-      const candleItems = items.map((x) => {
-        return {
-          type: x.item,
-          isSelected: false,
-          isRotated: x.isRotated,
-          color: x.color.color,
-          colorName: x.colorName,
-        };
-      });
-      candles.push({ isSelected: true, isEditMode: false, items: candleItems });
-      rerenderCandles();
+  const isColorCanBeChanged = useMemo(() => {
+    const candle = getSelectedCandle();
+    return !!candle && candle.items.length > 0;
+  }, [getSelectedCandle]);
+
+  const changeItemsColor = useCallback(
+    (color, colorName) => () => {
+      const selectedCandle = getSelectedCandle();
+      if (isColorCanBeChanged) {
+        selectedCandle.items.forEach((item) => {
+          item.color = color;
+          item.colorName = colorName;
+        });
+        rerenderCandles();
+      }
     },
-    [candles, rerenderCandles, resetItemSelection]
+    [rerenderCandles, getSelectedCandle]
   );
 
   const assembledCandles = useMemo(() =>
-    Object.keys(assembledCandlesMap).map((x) => {
-      return (
-        <MDBDropdownItem
-          link
-          childTag="button"
-          onClick={() => addAssembledCandle(x)}
-        >
-          {assembledCandlesMap[x].name}
-        </MDBDropdownItem>
-      );
-    })
+    Object.keys(assembledCandlesMap)
+      .slice(1)
+      .map((x) => {
+        return (
+          <MDBDropdownItem
+            link
+            childTag="button"
+            onClick={() => addNewCandle(x)}
+          >
+            {x}
+          </MDBDropdownItem>
+        );
+      })
   );
 
   return (
     <MDBRow>
-      <MDBCol md="4" sm="4" size="4">
-        <MDBDropdown onClose={() => setCloseDropdowns(false)} dropup>
+      <MDBCol md="3" sm="3" size="3">
+        <MDBDropdown
+          onClose={() => setCloseDropdowns(false)}
+          dropup
+          style={{ height: "100%" }}
+        >
           <MDBDropdownToggle
             disabled={!checkCandleCount()}
             className="btn-light btn-rounded"
+            style={{ height: "100%" }}
           >
             <MDBIcon fab icon="plus" size="lg" />
           </MDBDropdownToggle>
           <MDBDropdownMenu className="dropdown-menu" wrapper>
-            <MDBDropdownItem link onClick={addNewCandle}>
+            <MDBDropdownItem
+              link
+              onClick={() => addNewCandle("Default candle")}
+            >
               Add empty candle
             </MDBDropdownItem>
             <MDBDropdownItem preventCloseOnClick={!closeDropdowns}>
@@ -96,10 +114,7 @@ function MainMenu({ candles, rerenderCandles }) {
                 dropright
                 dropup
               >
-                <MDBDropdownToggle
-                  style={{ width: "100%", height: "100%" }}
-                  className="btn-light"
-                >
+                <MDBDropdownToggle className="btn-light">
                   Add assembled candle
                 </MDBDropdownToggle>
                 <MDBDropdownMenu style={{ minWidth: "8rem" }}>
@@ -110,7 +125,13 @@ function MainMenu({ candles, rerenderCandles }) {
           </MDBDropdownMenu>
         </MDBDropdown>
       </MDBCol>
-      <MDBCol md="4" sm="4" size="4">
+      <MDBCol md="3" sm="3" size="3">
+        <ColorSelector
+          changeColor={changeItemsColor}
+          isTogleActive={isColorCanBeChanged}
+        />
+      </MDBCol>
+      <MDBCol md="3" sm="3" size="3">
         <MDBBtn
           className="btn-light btn-rounded"
           disabled={!isEditModeForSpecificItem}
@@ -119,7 +140,7 @@ function MainMenu({ candles, rerenderCandles }) {
           <MDBIcon fas icon="pen" />
         </MDBBtn>
       </MDBCol>
-      <MDBCol md="4" sm="4" size="4">
+      <MDBCol md="3" sm="3" size="3">
         <MDBBtn
           className="btn-light btn-rounded"
           disabled={!isEditModeForSpecificItem}
