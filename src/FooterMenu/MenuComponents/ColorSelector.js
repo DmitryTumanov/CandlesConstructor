@@ -33,12 +33,12 @@ function ColorSelector({ changeColor, getSelectedCandleItem, isTogleActive }) {
   );
 
   return (
-    <MDBDropdown dropup>
+    <MDBDropdown dropright>
       <MDBDropdownToggle
         className="btn-light btn-rounded"
         disabled={!isTogleActive}
       >
-        <MDBIcon fas icon="brush" />
+        One collor
       </MDBDropdownToggle>
       <MDBDropdownMenu className="colors-dropdown">
         {colorItems}
