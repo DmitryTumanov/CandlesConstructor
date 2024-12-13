@@ -12,6 +12,8 @@ import {
 } from "mdb-react-ui-kit";
 import { maxCandles, assembledCandlesMap } from "../../Config/constants";
 import ColorSelector from "../MenuComponents/ColorSelector";
+import RandomColorSelector from "../MenuComponents/RandomColorSelector";
+import { rotate } from "three/examples/jsm/nodes/Nodes.js";
 
 function MainMenu({ candles, rerenderCandles }) {
   const [closeDropdowns, setCloseDropdowns] = useState(false);
@@ -70,6 +72,21 @@ function MainMenu({ candles, rerenderCandles }) {
     [rerenderCandles, getSelectedCandle]
   );
 
+  const randomChangeItemsColor = useCallback(
+    (colors) => () => {
+      const selectedCandle = getSelectedCandle();
+      if (isColorCanBeChanged) {
+        selectedCandle.items.forEach((item) => {
+          const colorId = Math.floor(Math.random() * colors.length);
+          item.color = colors[colorId].color;
+          item.colorName = colors[colorId].color;
+        });
+        rerenderCandles();
+      }
+    },
+    [rerenderCandles, getSelectedCandle]
+  );
+
   const assembledCandles = useMemo(() =>
     Object.keys(assembledCandlesMap)
       .slice(1)
@@ -89,15 +106,10 @@ function MainMenu({ candles, rerenderCandles }) {
   return (
     <MDBRow>
       <MDBCol md="3" sm="3" size="3">
-        <MDBDropdown
-          onClose={() => setCloseDropdowns(false)}
-          dropup
-          style={{ height: "100%" }}
-        >
+        <MDBDropdown onClose={() => setCloseDropdowns(false)} dropup>
           <MDBDropdownToggle
             disabled={!checkCandleCount()}
             className="btn-light btn-rounded"
-            style={{ height: "100%" }}
           >
             <MDBIcon fab icon="plus" size="lg" />
           </MDBDropdownToggle>
@@ -126,10 +138,28 @@ function MainMenu({ candles, rerenderCandles }) {
         </MDBDropdown>
       </MDBCol>
       <MDBCol md="3" sm="3" size="3">
-        <ColorSelector
-          changeColor={changeItemsColor}
-          isTogleActive={isColorCanBeChanged}
-        />
+        <MDBDropdown onClose={() => setCloseDropdowns(false)} dropup>
+          <MDBDropdownToggle
+            disabled={!isColorCanBeChanged}
+            className="btn-light btn-rounded"
+          >
+            <MDBIcon fas icon="palette" size="lg" />
+          </MDBDropdownToggle>
+          <MDBDropdownMenu className="dropdown-menu" wrapper>
+            <MDBDropdownItem preventCloseOnClick>
+              <ColorSelector
+                changeColor={changeItemsColor}
+                isTogleActive={isColorCanBeChanged}
+              />
+            </MDBDropdownItem>
+            <MDBDropdownItem preventCloseOnClick>
+              <RandomColorSelector
+                changeColor={randomChangeItemsColor}
+                isTogleActive={isColorCanBeChanged}
+              ></RandomColorSelector>
+            </MDBDropdownItem>
+          </MDBDropdownMenu>
+        </MDBDropdown>
       </MDBCol>
       <MDBCol md="3" sm="3" size="3">
         <MDBBtn

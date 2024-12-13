@@ -95,6 +95,21 @@ export const colorsConfig = {
   },
 };
 
+export const collorPalettes = {
+  0: {
+    name: "Palette",
+    colors: [colorsConfig["RED"], colorsConfig["ORANGE"], colorsConfig["PINK"]],
+  },
+  1: {
+    name: "Second",
+    colors: [
+      colorsConfig["YELLOW"],
+      colorsConfig["OLIVE"],
+      colorsConfig["GREEN"],
+    ],
+  },
+};
+
 export const assembledCandlesMap = {
   "Default candle": {
     isEditMode: false,
