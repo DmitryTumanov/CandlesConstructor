@@ -15,5 +15,5 @@ Initial setup
 ## 0.1.0
 
 - add button fuature: 1) add empty candle, 2) add assembled candle
--
+- add color button for main menu. This button can change color of all items on selected candle
 -

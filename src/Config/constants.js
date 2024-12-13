@@ -1,4 +1,6 @@
-﻿export const candleItemsMap = {
+﻿import { type } from "@testing-library/user-event/dist/type";
+
+export const candleItemsMap = {
   0: { url: "simple_candle/candle.glb", name: "Candle" },
   1: { url: "simple_candle/arc.glb", name: "Arc" },
   2: { url: "simple_candle/big_cilynder.glb", name: "Big Cylinder" },
@@ -94,182 +96,41 @@ export const colorsConfig = {
 };
 
 export const assembledCandlesMap = {
-  0: {
-    name: "Beautiful Candle",
-    candle_type: "default",
-    items: [
-      {
-        item: "1",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-      {
-        item: "7",
-        colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
-        isRotated: false,
-      },
-      {
-        item: "4",
-        colorName: "OLIVE",
-        color: colorsConfig["OLIVE"],
-        isRotated: true,
-      },
-      {
-        item: "3",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-    ],
+  "Default candle": {
+    isEditMode: false,
+    isSelected: true,
+    items: [],
   },
-  1: {
-    name: "Red Candle",
-    candle_type: "default",
+  "Red Candle": {
+    isEditMode: false,
+    isSelected: true,
     items: [
       {
-        item: "6",
+        type: "6",
         colorName: "RED",
-        color: colorsConfig["RED"],
+        color: "#CF3B5E",
+        isSelected: false,
         isRotated: false,
       },
       {
-        item: "4",
+        type: "4",
         colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
+        color: "#C54684",
+        isSelected: false,
         isRotated: false,
       },
       {
-        item: "9",
+        type: "9",
         colorName: "RED ORANGE",
-        color: colorsConfig["RED ORANGE"],
+        color: "#E53E4A",
+        isSelected: false,
         isRotated: true,
       },
       {
-        item: "14",
+        type: "14",
         colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-    ],
-  },
-  2: {
-    name: "Red Candle",
-    candle_type: "default",
-    items: [
-      {
-        item: "6",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-      {
-        item: "4",
-        colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
-        isRotated: false,
-      },
-      {
-        item: "9",
-        colorName: "RED ORANGE",
-        color: colorsConfig["RED ORANGE"],
-        isRotated: true,
-      },
-      {
-        item: "14",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-    ],
-  },
-  3: {
-    name: "Red Candle",
-    candle_type: "default",
-    items: [
-      {
-        item: "6",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-      {
-        item: "4",
-        colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
-        isRotated: false,
-      },
-      {
-        item: "9",
-        colorName: "RED ORANGE",
-        color: colorsConfig["RED ORANGE"],
-        isRotated: true,
-      },
-      {
-        item: "14",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-    ],
-  },
-  4: {
-    name: "Red Candle",
-    candle_type: "default",
-    items: [
-      {
-        item: "6",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-      {
-        item: "4",
-        colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
-        isRotated: false,
-      },
-      {
-        item: "9",
-        colorName: "RED ORANGE",
-        color: colorsConfig["RED ORANGE"],
-        isRotated: true,
-      },
-      {
-        item: "14",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-    ],
-  },
-  5: {
-    name: "Red Candle",
-    candle_type: "default",
-    items: [
-      {
-        item: "6",
-        colorName: "RED",
-        color: colorsConfig["RED"],
-        isRotated: false,
-      },
-      {
-        item: "4",
-        colorName: "DARK PINK",
-        color: colorsConfig["DARK PINK"],
-        isRotated: false,
-      },
-      {
-        item: "9",
-        colorName: "RED ORANGE",
-        color: colorsConfig["RED ORANGE"],
-        isRotated: true,
-      },
-      {
-        item: "14",
-        colorName: "RED",
-        color: colorsConfig["RED"],
+        color: "#CF3B5E",
+        isSelected: false,
         isRotated: false,
       },
     ],
