@@ -1,0 +1,17 @@
+
+.dropdown ul li button i{
+    padding-right: 7px;
+}
+
+.dropdown-item{
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #C54684;
+}
+
+.dropdown .dropdown-menu li button{
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+}
