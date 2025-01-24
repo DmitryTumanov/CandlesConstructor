@@ -16,9 +16,11 @@ function Orbit(props) {
       enableRotate
       enablePan={false}
       enableDamping
+      dampingFactor={0.05}
       autoRotateSpeed={5}
       maxDistance={maxDistance}
       minDistance={minDistance}
+      maxPolarAngle={Math.PI / 2}
     />
   );
 }

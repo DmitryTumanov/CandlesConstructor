@@ -36,7 +36,7 @@ function Builder(props) {
         <ambientLight intensity={1} />
         <directionalLight
           castShadow
-          position={[2.5, 8, 5]}
+          position={[-2.5, 8, -5]}
           intensity={1.5}
           shadow-mapSize={1024}
         >
@@ -67,9 +67,9 @@ function Builder(props) {
             </mesh>
           </Selection>
         </group>
-        <Orbit
-          distanceMax={cameraDistanceMax}
-          distanceMin={cameraDistanceMin}
+        <Orbit 
+          maxDistance={cameraDistanceMax}
+          minDistance={cameraDistanceMin}
         />
       </Canvas>
     </div>

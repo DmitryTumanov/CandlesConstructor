@@ -1,10 +1,16 @@
 # CandlesConstructor
 
-Candles Constructor for Kropli Zor
+Candles Constructor for Kropli Zor.
 
 # Deployment
 
-Run `npm run deploy -- -m "message_here"`
+Run `npm run deploy -- -m "message_here"` (from development branch to prevent deploying of uncommited changes).
+
+# Installation and development (step-by-step)
+
+- clone repository;
+- run `npm i` in project folder;
+- run `npm start` to start project.
 
 # Versions
 
